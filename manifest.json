@@ -1,0 +1,15 @@
+{
+  "name": "Our Soundtrack",
+  "short_name": "Soundtrack",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffb6c1",
+  "theme_color": "#ff2a75",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
