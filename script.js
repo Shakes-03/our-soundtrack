@@ -1,32 +1,10 @@
-let startClickCount = 0;
-const startButton = document.getElementById('press-start-btn'); 
-const secretModal = document.getElementById('secret-modal');
-const closeSecret = document.getElementById('close-secret');
+// --- FEATURE 1: WELCOME BOOT SPLASH SCREEN ---
+const welcomeModal = document.getElementById('welcome-modal');
+const startAppBtn = document.getElementById('start-app-btn');
 
-if (startButton) {
-    startButton.addEventListener('click', () => {
-        startClickCount++;
-        playSound('sfx-click');
-        
-        if (startClickCount >= 5) {
-            playSound('sfx-coin');
-            secretModal.style.display = 'flex';
-            startClickCount = 0;
-        }
-        setTimeout(() => { startClickCount = 0; }, 1500);
-    });
-}
-
-if (closeSecret) {
-    closeSecret.addEventListener('click', () => {
-        secretModal.style.display = 'none';
-        
-        // STOP VIDEO WHEN MODAL CLOSES
-        const vid = document.getElementById('secret-video');
-        if (vid) {
-            vid.pause();
-            vid.currentTime = 0; 
-        }
+if (startAppBtn && welcomeModal) {
+    startAppBtn.addEventListener('click', () => {
+        welcomeModal.classList.add('hidden');
     });
 }
 
@@ -80,7 +58,7 @@ if (mashBtn) {
     });
 }
 
-// --- FEATURE 4: RETRO SOUND EFFECTS (SFX) HELPER ---
+// --- FEATURE 3: RETRO SOUND EFFECTS (SFX) HELPER ---
 function playSound(sfxId) {
     const sfx = document.getElementById(sfxId);
     if (sfx) {
@@ -89,13 +67,14 @@ function playSound(sfxId) {
     }
 }
 
-// Hook SFX into your existing playlist or navigation buttons:
+// Hook SFX into buttons (excluding mash-btn to avoid overlapping sounds)
 document.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
         if(btn.id !== 'mash-btn') playSound('sfx-click');
     });
 });
 
+// --- FEATURE 4: TOGETHER COUNTDOWN TIMER ---
 const startDate = new Date("2023-04-01T00:00:00"); 
 
 function updateCountdown() {
@@ -112,27 +91,10 @@ function updateCountdown() {
     }
 }
 
-// Run immediately and update every minute
 updateCountdown();
 setInterval(updateCountdown, 60000);
 
-// --- 2. RETRO 8-BIT CLICK SOUND FX ---
-const clickAudio = document.getElementById("click-sound");
-
-function playClickSound() {
-    if (clickAudio) {
-        clickAudio.currentTime = 0;
-        clickAudio.play().catch(e => {
-            // Handles browser autoplay blocks gracefully if user hasn't clicked the page yet
-        });
-    }
-}
-
-// Attach the click sound effect to all interactive buttons/controls
-document.querySelectorAll("button, .playlist-item, .fa-heart").forEach(element => {
-    element.addEventListener("click", playClickSound);
-});
-
+// --- FEATURE 5: AUDIO PLAYER & PLAYLIST LOGIC ---
 const songs = [
     {
         title: "Love Me Again",
@@ -169,7 +131,7 @@ const songs = [
         audioSrc: "assets/audio/Joji - Sanctuary (Lyrics).mp3",
         memory: "You are my sanctuary, my safe place, and my home :)"
     },
-     {
+    {
         title: "I Wanna Be Yours",
         artist: "Artic Monkeys",
         cover: "assets/photos/IMG-20250325-WA0003.jpg",
@@ -197,7 +159,7 @@ const songs = [
         audioSrc: "assets/audio/The-Weeknd-DIE-FOR-YOU-Lyrics.mp3",
         memory: "I would absolutely die for you <3"
     },
-     {
+    {
         title: "Video Games",
         artist: "Lana Del Rey",
         cover: "assets/photos/IMG-20240824-WA0032.jpg",
@@ -225,7 +187,7 @@ const songs = [
         audioSrc: "assets/audio/Alicia Keys - Un-thinkable (Im Ready) (1).mp3",
         memory: "I still get butterflies when I think of you <3"
     },
-     {
+    {
         title: "Yellow",
         artist: "Coldplay",
         cover: "assets/photos/IMG-20241229-WA0001.jpg",
@@ -391,10 +353,3 @@ likeBtn.addEventListener('click', () => {
 });
 
 initApp();
-
-const welcomeModal = document.getElementById('welcome-modal');
-const startAppBtn = document.getElementById('start-app-btn');
-
-startAppBtn.addEventListener('click', () => {
-    welcomeModal.classList.add('hidden');
-});
