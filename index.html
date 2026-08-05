@@ -85,22 +85,16 @@
             <p id="memory-text">Tap a track from the playlist below to unlock our memories together.</p>
         </div>
         
-        <!-- Secret Level Cheat Code Modal (Hidden by default, triggered by 5 taps on boot screen) -->
+        <!-- Secret Video Unlocked via Love Meter Max -->
         <div id="secret-video-card" class="memory-card hidden">
             <span class="memory-tag"><i class="fa-solid fa-film"></i> Secret Video Unlocked! ❤️</span>
-            <video id="unlocked-secret-vid" class="secret-vid" controls width="100%" preload="metadata">
-                <source src="assets/video/secret-message.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-                <div class="dialog-body">
-                    <p>You found the secret level! Here is a special note just for you:</p>
-                    <p class="secret-love-note">"Every single day with you is my favorite adventure. I love you more than words can say &lt;3"</p>
-                    <video id="secret-video" class="secret-vid" controls width="100%" height="auto" preload="metadata">
-                        <source src="assets/video/secret-message.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
+            <div class="dialog-body">
+                <p>You found the secret level! Here is a special note just for you:</p>
+                <p class="secret-love-note">"Every single day with you is my favorite adventure. I love you more than words can say &lt;3"</p>
+                <video id="secret-video" class="secret-vid" controls width="100%" height="auto" preload="metadata">
+                    <source src="assets/video/secret-message.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </div>
 
@@ -112,15 +106,6 @@
             </div>
             <p id="love-status">Tap the heart to power up!</p>
             <button id="mash-btn" class="pixel-btn">❤️ TAP FAST!</button>
-        </div>
-
-        <!-- Permanent Main Page Secret Video Section -->
-        <div class="memory-card">
-            <span class="memory-tag"><i class="fa-solid fa-film"></i> Secret Video Message</span>
-            <video class="secret-vid" controls width="100%" preload="metadata">
-                <source src="assets/video/secret-message.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
         </div>
 
         <!-- Single Clean Playlist Queue Section -->
