@@ -1,3 +1,93 @@
+// --- FEATURE 1: SECRET CHEAT CODE (Tap 'Press Start' 5 times quickly) ---
+let startClickCount = 0;
+const startButton = document.getElementById('press-start-btn'); // Change to match your actual start button ID
+const secretModal = document.getElementById('secret-modal');
+const closeSecret = document.getElementById('close-secret');
+
+if (startButton) {
+    startButton.addEventListener('click', () => {
+        startClickCount++;
+        playSound('sfx-click');
+        
+        if (startClickCount >= 5) {
+            playSound('sfx-coin');
+            secretModal.style.display = 'flex';
+            startClickCount = 0;
+        }
+
+        // Reset clicks if she stops tapping for more than 1.5 seconds
+        setTimeout(() => { startClickCount = 0; }, 1500);
+    });
+}
+
+if (closeSecret) {
+    closeSecret.addEventListener('click', () => {
+        secretModal.style.display = 'none';
+    });
+}
+
+// --- FEATURE 2: LOVE METER MINI-GAME ---
+let loveScore = 0;
+const mashBtn = document.getElementById('mash-btn');
+const loveProgress = document.getElementById('love-progress');
+const loveStatus = document.getElementById('love-status');
+
+const milestones = [
+    { threshold: 20, text: "Level 1: Cute Crushes" },
+    { threshold: 50, text: "Level 2: Endless Laughs" },
+    { threshold: 80, text: "Level 3: True Soulmates" },
+    { threshold: 100, text: "Level MAX: Infinite Cuddles! ❤️" }
+];
+
+if (mashBtn) {
+    mashBtn.addEventListener('click', () => {
+        playSound('sfx-click');
+        if (loveScore < 100) {
+            loveScore += 5;
+            loveProgress.style.width = loveScore + "%";
+
+            // Check milestones
+            milestones.forEach(m => {
+                if (loveScore === m.threshold) {
+                    loveStatus.textContent = m.text;
+                    if (loveScore === 100) playSound('sfx-coin');
+                }
+            });
+        } else {
+            loveScore = 0; // Reset loop if she wants to tap again
+            loveProgress.style.width = "0%";
+            loveStatus.textContent = "Tap the heart to power up!";
+        }
+    });
+}
+
+// --- FEATURE 3: VOICE NOTE IN PLAYLIST ---
+// Add your voice note object directly into your existing playlist array in script.js:
+/*
+{
+    title: "A Special Note For You",
+    artist: "Shakes",
+    src: "assets/audio/voice-note.mp3",
+    img: "assets/photos/voice-icon.jpg",
+    note: "Press play to hear my voice!"
+}
+*/
+
+// --- FEATURE 4: RETRO SOUND EFFECTS (SFX) HELPER ---
+function playSound(sfxId) {
+    const sfx = document.getElementById(sfxId);
+    if (sfx) {
+        sfx.currentTime = 0;
+        sfx.play().catch(e => console.log("Audio play blocked by browser policy", e));
+    }
+}
+
+// Hook SFX into your existing playlist or navigation buttons:
+document.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        if(btn.id !== 'mash-btn') playSound('sfx-click');
+    });
+});
 const startDate = new Date("2023-04-01T00:00:00"); 
 
 function updateCountdown() {
