@@ -85,7 +85,7 @@
             <p id="memory-text">Tap a track from the playlist below to unlock our memories together.</p>
         </div>
         
-        <!-- Secret Level Cheat Code Modal (Hidden until 5 taps on PRESS START) -->
+        <!-- Secret Level Cheat Code Modal (Hidden by default, triggered by 5 taps on boot screen) -->
         <div id="secret-modal" class="modal-overlay" style="display: none;">
             <div class="pixel-dialog secret-dialog">
                 <div class="dialog-header">
@@ -113,16 +113,16 @@
             <button id="mash-btn" class="pixel-btn">❤️ TAP FAST!</button>
         </div>
 
-        <!-- Permanent Secret Video Section on Main Page -->
+        <!-- Permanent Main Page Secret Video Section -->
         <div class="memory-card">
             <span class="memory-tag"><i class="fa-solid fa-film"></i> Secret Video Message</span>
-            <video class="secret-vid" controls width="100%" preload="metadata" style="margin-top: 10px; border: 2px solid #ff2a75; border-radius: 4px;">
+            <video class="secret-vid" controls width="100%" preload="metadata">
                 <source src="assets/video/secret-message.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
 
-        <!-- Single Clean Playlist Section -->
+        <!-- Single Clean Playlist Queue Section -->
         <div class="playlist-section">
             <h3>Playlist Queue</h3>
             <ul id="playlist" class="playlist">
