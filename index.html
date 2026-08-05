@@ -86,12 +86,13 @@
         </div>
         
         <!-- Secret Level Cheat Code Modal (Hidden by default, triggered by 5 taps on boot screen) -->
-        <div id="secret-modal" class="modal-overlay" style="display: none;">
-            <div class="pixel-dialog secret-dialog">
-                <div class="dialog-header">
-                    <span>SECRET UNLOCKED: LEVEL ∞</span>
-                    <button id="close-secret" class="pixel-close-btn">X</button>
-                </div>
+        <div id="secret-video-card" class="memory-card hidden">
+            <span class="memory-tag"><i class="fa-solid fa-film"></i> Secret Video Unlocked! ❤️</span>
+            <video id="unlocked-secret-vid" class="secret-vid" controls width="100%" preload="metadata">
+                <source src="assets/video/secret-message.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
                 <div class="dialog-body">
                     <p>You found the secret level! Here is a special note just for you:</p>
                     <p class="secret-love-note">"Every single day with you is my favorite adventure. I love you more than words can say &lt;3"</p>
