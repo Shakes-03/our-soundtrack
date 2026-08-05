@@ -13,9 +13,10 @@ if (startButton) {
             playSound('sfx-coin');
             secretModal.style.display = 'flex';
             startClickCount = 0;
+            // Optional: Autoplay video when opened
+            // const vid = document.getElementById('secret-video');
+            // if(vid) vid.play();
         }
-
-        // Reset clicks if she stops tapping for more than 1.5 seconds
         setTimeout(() => { startClickCount = 0; }, 1500);
     });
 }
@@ -23,9 +24,16 @@ if (startButton) {
 if (closeSecret) {
     closeSecret.addEventListener('click', () => {
         secretModal.style.display = 'none';
+        
+        // ⬇️ ADD THIS TO STOP VIDEO WHEN MODAL CLOSES ⬇️
+        const vid = document.getElementById('secret-video');
+        if (vid) {
+            vid.pause();
+            vid.currentTime = 0; // Optional: reset video to start
+        }
+        // ⬆️ END OF ADDITION ⬆️
     });
 }
-
 // --- FEATURE 2: LOVE METER MINI-GAME ---
 let loveScore = 0;
 const mashBtn = document.getElementById('mash-btn');
