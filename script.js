@@ -1,4 +1,3 @@
-// --- FEATURE 1: SECRET CHEAT CODE (Tap 'Press Start' 5 times quickly) ---
 let startClickCount = 0;
 const startButton = document.getElementById('press-start-btn'); // Change to match your actual start button ID
 const secretModal = document.getElementById('secret-modal');
@@ -25,15 +24,15 @@ if (closeSecret) {
     closeSecret.addEventListener('click', () => {
         secretModal.style.display = 'none';
         
-        // ⬇️ ADD THIS TO STOP VIDEO WHEN MODAL CLOSES ⬇️
+        // ⬇️ STOP VIDEO WHEN MODAL CLOSES ⬇️
         const vid = document.getElementById('secret-video');
         if (vid) {
             vid.pause();
             vid.currentTime = 0; // Optional: reset video to start
         }
-        // ⬆️ END OF ADDITION ⬆️
     });
 }
+
 // --- FEATURE 2: LOVE METER MINI-GAME ---
 let loveScore = 0;
 const mashBtn = document.getElementById('mash-btn');
@@ -58,28 +57,38 @@ if (mashBtn) {
             milestones.forEach(m => {
                 if (loveScore === m.threshold) {
                     loveStatus.textContent = m.text;
-                    if (loveScore === 100) playSound('sfx-coin');
+                    if (loveScore === 100) {
+                        playSound('sfx-coin');
+                        
+                        // 🔓 UNLOCK & PLAY SECRET VIDEO WHEN LOVE METER HITS 100%
+                        const secretCard = document.getElementById('secret-video-card');
+                        const secretVid = document.getElementById('unlocked-secret-vid');
+                        
+                        if (secretCard) {
+                            secretCard.classList.remove('hidden');
+                        }
+                        if (secretVid) {
+                            secretVid.play().catch(error => {
+                                console.log("Autoplay prevented by browser, user can click play manually.", error);
+                            });
+                        }
+                    }
                 }
             });
         } else {
             loveScore = 0; // Reset loop if she wants to tap again
             loveProgress.style.width = "0%";
             loveStatus.textContent = "Tap the heart to power up!";
+            
+            // Optionally hide the video again on reset, or leave it unlocked:
+            // const secretCard = document.getElementById('secret-video-card');
+            // if (secretCard) secretCard.classList.add('hidden');
         }
     });
 }
 
 // --- FEATURE 3: VOICE NOTE IN PLAYLIST ---
-// Add your voice note object directly into your existing playlist array in script.js:
-/*
-{
-    title: "A Special Note For You",
-    artist: "Shakes",
-    src: "assets/audio/voice-note.mp3",
-    img: "assets/photos/voice-icon.jpg",
-    note: "Press play to hear my voice!"
-}
-*/
+// Add your voice note object directly into your existing playlist array in script.js if desired.
 
 // --- FEATURE 4: RETRO SOUND EFFECTS (SFX) HELPER ---
 function playSound(sfxId) {
@@ -96,6 +105,7 @@ document.querySelectorAll('button').forEach(btn => {
         if(btn.id !== 'mash-btn') playSound('sfx-click');
     });
 });
+
 const startDate = new Date("2023-04-01T00:00:00"); 
 
 function updateCountdown() {
@@ -116,7 +126,6 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 60000);
 
-
 // --- 2. RETRO 8-BIT CLICK SOUND FX ---
 const clickAudio = document.getElementById("click-sound");
 
@@ -132,7 +141,9 @@ function playClickSound() {
 // Attach the click sound effect to all interactive buttons/controls
 document.querySelectorAll("button, .playlist-item, .fa-heart").forEach(element => {
     element.addEventListener("click", playClickSound);
-});const songs = [
+});
+
+const songs = [
     {
         title: "Love Me Again",
         artist: "John Newman",
@@ -154,7 +165,6 @@ document.querySelectorAll("button, .playlist-item, .fa-heart").forEach(element =
         audioSrc: "assets/audio/Chris Isaak - Wicked Game (Lyrics).mp3",
         memory: "I never thought I'd love someone like you <3"
     },
-
     {
         title: "Art Deco",
         artist: "Lana Del Rey",
