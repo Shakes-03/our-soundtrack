@@ -1,5 +1,5 @@
 let startClickCount = 0;
-const startButton = document.getElementById('press-start-btn'); // Change to match your actual start button ID
+const startButton = document.getElementById('press-start-btn'); 
 const secretModal = document.getElementById('secret-modal');
 const closeSecret = document.getElementById('close-secret');
 
@@ -12,9 +12,6 @@ if (startButton) {
             playSound('sfx-coin');
             secretModal.style.display = 'flex';
             startClickCount = 0;
-            // Optional: Autoplay video when opened
-            // const vid = document.getElementById('secret-video');
-            // if(vid) vid.play();
         }
         setTimeout(() => { startClickCount = 0; }, 1500);
     });
@@ -24,11 +21,11 @@ if (closeSecret) {
     closeSecret.addEventListener('click', () => {
         secretModal.style.display = 'none';
         
-        // ⬇️ STOP VIDEO WHEN MODAL CLOSES ⬇️
+        // STOP VIDEO WHEN MODAL CLOSES
         const vid = document.getElementById('secret-video');
         if (vid) {
             vid.pause();
-            vid.currentTime = 0; // Optional: reset video to start
+            vid.currentTime = 0; 
         }
     });
 }
@@ -62,7 +59,7 @@ if (mashBtn) {
                         
                         // 🔓 UNLOCK & PLAY SECRET VIDEO WHEN LOVE METER HITS 100%
                         const secretCard = document.getElementById('secret-video-card');
-                        const secretVid = document.getElementById('unlocked-secret-vid');
+                        const secretVid = document.getElementById('secret-video');
                         
                         if (secretCard) {
                             secretCard.classList.remove('hidden');
@@ -76,19 +73,12 @@ if (mashBtn) {
                 }
             });
         } else {
-            loveScore = 0; // Reset loop if she wants to tap again
+            loveScore = 0; 
             loveProgress.style.width = "0%";
             loveStatus.textContent = "Tap the heart to power up!";
-            
-            // Optionally hide the video again on reset, or leave it unlocked:
-            // const secretCard = document.getElementById('secret-video-card');
-            // if (secretCard) secretCard.classList.add('hidden');
         }
     });
 }
-
-// --- FEATURE 3: VOICE NOTE IN PLAYLIST ---
-// Add your voice note object directly into your existing playlist array in script.js if desired.
 
 // --- FEATURE 4: RETRO SOUND EFFECTS (SFX) HELPER ---
 function playSound(sfxId) {
