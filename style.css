@@ -500,7 +500,14 @@ header h1 {
     width: 0%;
     transition: width 0.1s ease;
 }
-
+/* Styling for the Secret Video */
+.secret-vid {
+    margin-top: 10px;
+    border: 2px solid #fff;
+    /* Optional: Ensure it doesn't overflow the modal */
+    max-height: 300px; 
+    object-fit: cover; /* Or 'contain' if you want the whole video visible */
+}
 .hidden {
     display: none !important;
 }
