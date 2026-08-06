@@ -31,7 +31,6 @@ if (mashBtn) {
             loveProgress.style.width = "0%";
             loveStatus.textContent = "Tap the heart to power up!";
             
-            // Optional: Re-hide the secret video if they reset the game
             const secretCard = document.getElementById('secret-video-card');
             if (secretCard) secretCard.classList.add('hidden');
             return;
@@ -58,27 +57,6 @@ if (mashBtn) {
             if (secretVid) {
                 secretVid.load();
             }
-        }
-    });
-}
-
-            if (loveScore >= 100) {
-                playSound('sfx-coin');
-                
-                const secretCard = document.getElementById('secret-video-card');
-                const secretVid = document.getElementById('secret-video');
-                
-                if (secretCard) {
-                    secretCard.classList.remove('hidden');
-                }
-                if (secretVid) {
-                    secretVid.load();
-                }
-            }
-        } else {
-            loveScore = 0; 
-            loveProgress.style.width = "0%";
-            loveStatus.textContent = "Tap the heart to power up!";
         }
     });
 }
