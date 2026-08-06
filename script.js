@@ -28,34 +28,33 @@ if (mashBtn) {
             loveScore += 5;
             loveProgress.style.width = loveScore + "%";
 
-            // Update milestone status text
             milestones.forEach(m => {
                 if (loveScore === m.threshold) {
                     loveStatus.textContent = m.text;
                 }
             });
 
-            // Trigger max love rewards explicitly outside the loop for reliability
             if (loveScore >= 100) {
-    playSound('sfx-coin');
-    
-    const secretCard = document.getElementById('secret-video-card');
-    const secretVid = document.getElementById('secret-video');
-    
-    if (secretCard) {
-        secretCard.classList.remove('hidden');
-    }
-    if (secretVid) {
-        secretVid.load();
-        
-        // Optional: Muting temporarily guarantees the browser lets it auto-start, 
-        // after which she can unmute using the video controls bar.
-        secretVid.muted = false; 
-        
-        secretVid.play().catch(error => {
-            console.log("Browser blocked autoplay. User can use video controls to play.", error);
-        });
-    }
+                playSound('sfx-coin');
+                
+                const secretCard = document.getElementById('secret-video-card');
+                const secretVid = document.getElementById('secret-video');
+                
+                if (secretCard) {
+                    secretCard.classList.remove('hidden');
+                }
+                if (secretVid) {
+                    secretVid.load();
+                    // Browsers block programmatic video audio play, so we prompt 
+                    // user via controls while letting the coin sound effect fire.
+                }
+            }
+        } else {
+            loveScore = 0; 
+            loveProgress.style.width = "0%";
+            loveStatus.textContent = "Tap the heart to power up!";
+        }
+    });
 }
 
 // --- FEATURE 3: RETRO SOUND EFFECTS (SFX) HELPER ---
