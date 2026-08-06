@@ -45,8 +45,6 @@ if (mashBtn) {
                 }
                 if (secretVid) {
                     secretVid.load();
-                    // Browsers block programmatic video audio play, so we prompt 
-                    // user via controls while letting the coin sound effect fire.
                 }
             }
         } else {
@@ -66,10 +64,10 @@ function playSound(sfxId) {
     }
 }
 
-// Hook SFX into buttons (excluding mash-btn to avoid overlapping sounds)
+// Hook SFX into buttons (including mash-btn so every click plays the sound)
 document.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
-        if(btn.id !== 'mash-btn') playSound('sfx-click');
+        playSound('sfx-click');
     });
 });
 
