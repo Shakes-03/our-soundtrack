@@ -37,27 +37,25 @@ if (mashBtn) {
 
             // Trigger max love rewards explicitly outside the loop for reliability
             if (loveScore >= 100) {
-                playSound('sfx-coin');
-                
-                const secretCard = document.getElementById('secret-video-card');
-                const secretVid = document.getElementById('secret-video');
-                
-                if (secretCard) {
-                    secretCard.classList.remove('hidden');
-                }
-                if (secretVid) {
-                    secretVid.load(); // Forces the browser to recognize the video source
-                    secretVid.play().catch(error => {
-                        console.log("Autoplay prevented by browser, user can click play manually.", error);
-                    });
-                }
-            }
-        } else {
-            loveScore = 0; 
-            loveProgress.style.width = "0%";
-            loveStatus.textContent = "Tap the heart to power up!";
-        }
-    });
+    playSound('sfx-coin');
+    
+    const secretCard = document.getElementById('secret-video-card');
+    const secretVid = document.getElementById('secret-video');
+    
+    if (secretCard) {
+        secretCard.classList.remove('hidden');
+    }
+    if (secretVid) {
+        secretVid.load();
+        
+        // Optional: Muting temporarily guarantees the browser lets it auto-start, 
+        // after which she can unmute using the video controls bar.
+        secretVid.muted = false; 
+        
+        secretVid.play().catch(error => {
+            console.log("Browser blocked autoplay. User can use video controls to play.", error);
+        });
+    }
 }
 
 // --- FEATURE 3: RETRO SOUND EFFECTS (SFX) HELPER ---
