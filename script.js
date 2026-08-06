@@ -24,15 +24,43 @@ const milestones = [
 if (mashBtn) {
     mashBtn.addEventListener('click', () => {
         playSound('sfx-click');
-        if (loveScore < 100) {
-            loveScore += 10;
-            loveProgress.style.width = loveScore + "%";
+        
+        // If already maxed out, reset on the next tap
+        if (loveScore >= 100) {
+            loveScore = 0; 
+            loveProgress.style.width = "0%";
+            loveStatus.textContent = "Tap the heart to power up!";
+            
+            // Optional: Re-hide the secret video if they reset the game
+            const secretCard = document.getElementById('secret-video-card');
+            if (secretCard) secretCard.classList.add('hidden');
+            return;
+        }
 
-            milestones.forEach(m => {
-                if (loveScore === m.threshold) {
-                    loveStatus.textContent = m.text;
-                }
-            });
+        loveScore += 10;
+        loveProgress.style.width = loveScore + "%";
+
+        milestones.forEach(m => {
+            if (loveScore === m.threshold) {
+                loveStatus.textContent = m.text;
+            }
+        });
+
+        if (loveScore >= 100) {
+            playSound('sfx-coin');
+            
+            const secretCard = document.getElementById('secret-video-card');
+            const secretVid = document.getElementById('secret-video');
+            
+            if (secretCard) {
+                secretCard.classList.remove('hidden');
+            }
+            if (secretVid) {
+                secretVid.load();
+            }
+        }
+    });
+}
 
             if (loveScore >= 100) {
                 playSound('sfx-coin');
