@@ -25,7 +25,7 @@ if (mashBtn) {
     mashBtn.addEventListener('click', () => {
         playSound('sfx-click');
         if (loveScore < 100) {
-            loveScore += 5;
+            loveScore += 10;
             loveProgress.style.width = loveScore + "%";
 
             milestones.forEach(m => {
