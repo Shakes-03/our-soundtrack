@@ -355,5 +355,6 @@ likeBtn.addEventListener('click', () => {
         heartIcon.classList.add('fa-regular');
     }
 });
-
-initApp();
+document.addEventListener('DOMContentLoaded', () => {
+    initApp();
+});
