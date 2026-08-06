@@ -1,12 +1,13 @@
-// --- FEATURE 1: WELCOME BOOT SPLASH SCREEN ---
-const welcomeModal = document.getElementById('welcome-modal');
-const startAppBtn = document.getElementById('start-app-btn');
+document.addEventListener('DOMContentLoaded', () => {
+    const startBtn = document.getElementById('start-app-btn');
+    const welcomeModal = document.getElementById('welcome-modal');
 
-if (startAppBtn && welcomeModal) {
-    startAppBtn.addEventListener('click', () => {
-        welcomeModal.classList.add('hidden');
-    });
-}
+    if (startBtn && welcomeModal) {
+        startBtn.addEventListener('click', () => {
+            welcomeModal.classList.add('hidden');
+        });
+    }
+});
 
 // --- FEATURE 2: LOVE METER MINI-GAME ---
 let loveScore = 0;
