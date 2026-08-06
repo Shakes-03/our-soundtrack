@@ -28,28 +28,30 @@ if (mashBtn) {
             loveScore += 5;
             loveProgress.style.width = loveScore + "%";
 
-            // Check milestones
+            // Update milestone status text
             milestones.forEach(m => {
                 if (loveScore === m.threshold) {
                     loveStatus.textContent = m.text;
-                    if (loveScore === 100) {
-                        playSound('sfx-coin');
-                        
-                        // 🔓 UNLOCK & PLAY SECRET VIDEO WHEN LOVE METER HITS 100%
-                        const secretCard = document.getElementById('secret-video-card');
-                        const secretVid = document.getElementById('secret-video');
-                        
-                        if (secretCard) {
-                            secretCard.classList.remove('hidden');
-                        }
-                        if (secretVid) {
-                            secretVid.play().catch(error => {
-                                console.log("Autoplay prevented by browser, user can click play manually.", error);
-                            });
-                        }
-                    }
                 }
             });
+
+            // Trigger max love rewards explicitly outside the loop for reliability
+            if (loveScore >= 100) {
+                playSound('sfx-coin');
+                
+                const secretCard = document.getElementById('secret-video-card');
+                const secretVid = document.getElementById('secret-video');
+                
+                if (secretCard) {
+                    secretCard.classList.remove('hidden');
+                }
+                if (secretVid) {
+                    secretVid.load(); // Forces the browser to recognize the video source
+                    secretVid.play().catch(error => {
+                        console.log("Autoplay prevented by browser, user can click play manually.", error);
+                    });
+                }
+            }
         } else {
             loveScore = 0; 
             loveProgress.style.width = "0%";
