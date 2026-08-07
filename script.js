@@ -7,6 +7,29 @@ document.addEventListener('DOMContentLoaded', () => {
             welcomeModal.classList.add('hidden');
         });
     }
+    
+    initApp();
+
+    // --- RETRO VOLUME CONTROL LOGIC ---
+    const volBlocks = document.querySelectorAll('.vol-block');
+    
+    volBlocks.forEach((block, index) => {
+        block.addEventListener('click', () => {
+            const volumeLevel = parseFloat(block.getAttribute('data-value'));
+            
+            // Updates the main audio object defined globally in your script
+            audio.volume = volumeLevel;
+
+            // Highlight active blocks up to the clicked one
+            volBlocks.forEach((b, i) => {
+                if (i <= index) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
+        });
+    });
 });
 
 // --- FEATURE 2: LOVE METER MINI-GAME ---
@@ -26,7 +49,6 @@ if (mashBtn) {
     mashBtn.addEventListener('click', () => {
         playSound('sfx-click');
         
-        // If already maxed out, reset on the next tap
         if (loveScore >= 100) {
             loveScore = 0; 
             loveProgress.style.width = "0%";
@@ -71,7 +93,6 @@ function playSound(sfxId) {
     }
 }
 
-// Hook SFX into buttons (including mash-btn so every click plays the sound)
 document.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
         playSound('sfx-click');
@@ -354,7 +375,4 @@ likeBtn.addEventListener('click', () => {
         heartIcon.classList.remove('fa-solid');
         heartIcon.classList.add('fa-regular');
     }
-});
-document.addEventListener('DOMContentLoaded', () => {
-    initApp();
 });

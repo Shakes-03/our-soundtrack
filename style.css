@@ -516,3 +516,32 @@ header h1 {
     padding: 0;
     border: none;
 }
+.retro-volume-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    font-family: 'Courier New', monospace; /* Matches your pixel vibe */
+    color: #ff2a7a;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.vol-blocks {
+    display: flex;
+    gap: 4px;
+}
+
+.vol-block {
+    width: 12px;
+    height: 16px;
+    background-color: #333;
+    border: 2px solid #111;
+    cursor: pointer;
+    transition: background-color 0.1s;
+}
+
+.vol-block.active {
+    background-color: #ff2a7a; /* Matches your hot pink button theme */
+    box-shadow: 2px 2px 0px #111;
+}
