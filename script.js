@@ -160,7 +160,7 @@ const songs = [
         title: "I Wanna Be Yours",
         artist: "Artic Monkeys",
         cover: "assets/photos/IMG-20250325-WA0003.jpg",
-        audioSrc: "assets/audio/Arctic Monkeys - I Wanna Be Yours.mp3",
+        audioSrc: "assets/audio/Arctic Monkeys - I Wanna Be Yours (Lyrics).mp3",
         memory: "I wanna be yours, in every way possible, forever and always <3"
     },
     {
