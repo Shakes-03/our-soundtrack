@@ -185,6 +185,13 @@ const songs = [
         memory: "I would absolutely die for you <3"
     },
     {
+        title: "Stargirl Interlude",
+        artist: "Lana Del Rey",
+        cover: "assets/photos/IMG-20240906-WA0051.jpg",
+        audioSrc: "assets/audio/The Weeknd - Stargirl Interlude (ft. Lana Del Rey) - Real Extended Version.mp3",
+        memory: "You're my stargirl <3"
+    },
+    {
         title: "Video Games",
         artist: "Lana Del Rey",
         cover: "assets/photos/IMG-20240824-WA0032.jpg",
